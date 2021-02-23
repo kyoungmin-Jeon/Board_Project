@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			            "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+	
+	<select id="readReply" parameterType="java.lang.Integer" resultType="com.board.beans.BoardReplyBean">
+		<![CDATA[
+			select rno, content, writer, regDate
+			from board_reply
+			where content_idx = #{content_idx}
+		]]>
+	</select>
+
+	<insert id="writeReply" parameterType="com.board.beans.BoardReplyBean">
+		<![CDATA[
+			insert into board_reply(content_idx, rno, content, writer)
+			values(#{content_idx}, board_reply_seq.nextval, #{content}, #{writer}) 
+			
+		]]>
+	</insert>
+	
+	<delete id='deleteReply' parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from board_reply
+			where rno = ${rno}
+		]]>
+	</delete>
+</mapper>			            
