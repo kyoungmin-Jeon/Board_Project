@@ -32,7 +32,7 @@ $(document).ready(function(){
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 				<div>
-					<span> <h3 align='center'>아이디 찾기 </h3>  </span>
+					 <h3 align="center">아이디 찾기 </h3>  
 				 </div>
 				<div class="card shadow">
 					<div class="card-body">
@@ -40,10 +40,12 @@ $(document).ready(function(){
 							<div class="form-group">
 								<form:label path="user_name">이름</form:label>
 								<form:input path="user_name" class='form-control'/>
+								<form:errors path="user_name" style='color:red'/>
 							</div>
 							<div class="form-group">
 								<form:label path="user_num">전화번호</form:label>
 								<form:input path="user_num" name="user_num" id="user_num" maxlength="11" class='form-control' />
+								<form:errors path="user_num" style='color:red'/>
 							</div>
 
 							<div class="form-group">

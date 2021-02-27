@@ -22,7 +22,7 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 				<div>
-					<span> <h3 align='center'>아이디 찾기 결과 </h3>  </span>
+					<h3 align='center'>아이디 찾기 결과</h3>
 				 </div>
 				<div class="card shadow">
 					<br><br><br><br><br>

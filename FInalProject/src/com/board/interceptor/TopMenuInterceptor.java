@@ -12,12 +12,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.board.beans.BoardInfoBean;
 import com.board.beans.UserBean;
-import com.board.service.TopMenuService;
+import com.board.service.TopMenuServiceImpl;
 
 public class TopMenuInterceptor implements HandlerInterceptor{
 	
 	@Autowired
-	private TopMenuService topMenuService;
+	private TopMenuServiceImpl topMenuService;
 
 	@Resource(name="loginUserBean")
 	@Lazy

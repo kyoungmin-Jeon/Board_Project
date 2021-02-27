@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.beans.UserBean;
-import com.board.service.UserService;
+import com.board.service.UserServiceImpl;
 import com.board.validator.UserValidator;
 
 @Controller
@@ -25,7 +25,7 @@ import com.board.validator.UserValidator;
 public class UserController {
 	
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@Resource(name = "loginUserBean")
 	@Lazy
@@ -34,7 +34,7 @@ public class UserController {
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
 						@RequestParam(value = "fail", defaultValue = "false") boolean fail,
-						Model model) {
+						Model model) throws Exception {
 		
 		model.addAttribute("fail", fail);
 	
@@ -42,7 +42,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean, BindingResult result) {
+	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean, BindingResult result)throws Exception {
 		
 		if(result.hasErrors()) {
 			return "user/login";
@@ -58,12 +58,12 @@ public class UserController {
 	}
 	
 	@GetMapping("/join")
-	public String join(@ModelAttribute("joinUserBean") UserBean joinUserBean) {
+	public String join(@ModelAttribute("joinUserBean") UserBean joinUserBean)throws Exception {
 		return "user/join";
 	}
 	
 	@PostMapping("/join_pro")
-	public String join_pro(@Valid @ModelAttribute("joinUserBean") UserBean joinUserBean, BindingResult result) {
+	public String join_pro(@Valid @ModelAttribute("joinUserBean") UserBean joinUserBean, BindingResult result)throws Exception {
 		if(result.hasErrors()) {
 			return "user/join";
 		}
@@ -74,23 +74,35 @@ public class UserController {
 	}
 	
 	@GetMapping("/delete")
-	public String delete(@ModelAttribute("deleteUserBean")UserBean deleteUserBean) {
+	public String delete(@ModelAttribute("deleteUserBean")UserBean deleteUserBean,
+						 Model model)throws Exception {
 		
 		userService.getDeleteUserInfo(deleteUserBean);
-
+		
+		int user_idx = deleteUserBean.getUser_idx();
+		
+		model.addAttribute("user_idx",user_idx);
+		
 		return"user/delete";
 	}
 	
 	@PostMapping("/delete_pro")
-	public String delete_pro(@Valid @ModelAttribute("deleteUserBean") UserBean deleteUserBean,
-							 BindingResult result, @RequestParam("user_pw") String user_pw, Model model) {
+	public String delete_pro(@Valid @ModelAttribute("deleteUserBean") UserBean deleteUserBean,BindingResult result,
+							 @RequestParam("user_pw") String user_pw,
+							 @RequestParam("user_idx") int user_idx,
+							 Model model)throws Exception {
+
+		System.out.println(loginUserBean.getUser_pw());
+		System.out.println(deleteUserBean.getUser_pw());
 		
-		if(loginUserBean.getUser_pw().equals(deleteUserBean.getUser_pw())  ) {
+		if(loginUserBean.getUser_pw().equals(deleteUserBean.getUser_pw()) && deleteUserBean.getUser_pw().equals(deleteUserBean.getUser_pw2())   ) {
 			
-			userService.deleteUserInfo(user_pw);
-			
+			userService.deleteUserInfo(user_idx);
 			
 			return"user/delete_success";
+		}
+		else if(result.hasErrors()) {
+			return"user/delete";
 		}
 		
 		return"user/delete_fail";
@@ -99,7 +111,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/modify")
-	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
+	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean)throws Exception {
 		
 		userService.getModifyUserInfo(modifyUserBean);
 		
@@ -107,7 +119,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/modify_pro")
-	public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
+	public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result)throws Exception {
 		
 		if(result.hasErrors()) {
 			return "user/modify";
@@ -119,7 +131,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout() {
+	public String logout()throws Exception {
 		
 		loginUserBean.setUserLogin(false);
 		
@@ -127,20 +139,21 @@ public class UserController {
 	}
 	
 	@GetMapping("/not_login")
-	public String not_login() {
+	public String not_login() throws Exception{
 		return "user/not_login";
 	}
 	
 	@GetMapping("/findid")
 	public String findid(@ModelAttribute("findIdUserBean")UserBean findIdUserBean,
-						 Model model) {
+						 Model model) throws Exception{
 		
 		return"user/findid";
 	}
 
 	@PostMapping("findid_pro")
 	public String findid_pro(@ModelAttribute("findIdUserBean")UserBean findIdUserBean,
-							 Model model) {
+							 Model model )throws Exception {
+
 		
 		String result = userService.findIdUserInfo(findIdUserBean);
 		
@@ -154,13 +167,13 @@ public class UserController {
 	}
 	
 	@GetMapping("findpw")
-	public String findpw(@ModelAttribute("findPwUserBean")UserBean findPwUserBean) {
+	public String findpw(@ModelAttribute("findPwUserBean")UserBean findPwUserBean)throws Exception {
 		
 		return"user/findpw";
 	}
 	
 	@PostMapping("findpw_pro")
-	public String findpw_pro(@ModelAttribute("findPwUserBean") UserBean findPwUserBean, Model model) {
+	public String findpw_pro(@ModelAttribute("findPwUserBean") UserBean findPwUserBean, Model model)throws Exception {
 		
 		String result = userService.findPwUserInfo(findPwUserBean);
 		
@@ -179,7 +192,7 @@ public class UserController {
 	@GetMapping("updatePw")
 	public String updatePw(@ModelAttribute("updatePwUserBean")UserBean updatePwUserBean,
 						   @RequestParam("user_name")String user_name,
-						   	Model model) {
+						   	Model model)throws Exception {
 
 		model.addAttribute("user_name",user_name);
 		
@@ -188,7 +201,7 @@ public class UserController {
 	
 	@PostMapping("updatePw_pro")
 	public String updatePw_pro(@ModelAttribute("updatePwUserBean")UserBean updatePwUserBean,
-							   @RequestParam("user_name") String user_name, Model model) {
+							   @RequestParam("user_name") String user_name, Model model)throws Exception {
 		
 		if(updatePwUserBean.getUser_pw().equals(updatePwUserBean.getUser_pw2())) {
 			userService.updatePw(updatePwUserBean);
@@ -202,7 +215,7 @@ public class UserController {
 	}
 	
 	@InitBinder
-	public void initBinder(WebDataBinder binder) {
+	public void initBinder(WebDataBinder binder)throws Exception {
 		UserValidator validator1 = new UserValidator();
 		binder.addValidators(validator1);
 	}

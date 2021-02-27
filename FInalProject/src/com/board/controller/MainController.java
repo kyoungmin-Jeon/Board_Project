@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.board.beans.BoardInfoBean;
 import com.board.beans.ContentBean;
-import com.board.service.MainService;
-import com.board.service.TopMenuService;
+import com.board.service.MainServiceImpl;
+import com.board.service.TopMenuServiceImpl;
 
 @Controller
 public class MainController {
 	@Autowired
-	private MainService mainService;
+	private MainServiceImpl mainService;
 
 	@Autowired
-	private TopMenuService topMenuService;
+	private TopMenuServiceImpl topMenuService;
 
 	@GetMapping("/main")
 	public String main(Model model) throws Exception {

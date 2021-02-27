@@ -2,6 +2,7 @@ package com.board.controller;
 
 import java.util.List;
 
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -15,14 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.beans.BoardReplyBean;
 import com.board.beans.ContentBean;
 import com.board.beans.PageBean;
 import com.board.beans.UserBean;
-import com.board.service.BoardService;
-import com.board.service.ReplyService;
+import com.board.service.BoardServiceImpl;
+import com.board.service.ReplyServiceImpl;
 
 
 @Controller
@@ -30,10 +30,10 @@ import com.board.service.ReplyService;
 public class BoardController {
 	
 	@Autowired
-	private BoardService boardService;
+	private BoardServiceImpl boardService;
 	
 	@Autowired
-	private ReplyService replyService;
+	private ReplyServiceImpl replyService;
 	
 	@Resource(name = "loginUserBean")
 	@Lazy
@@ -85,7 +85,7 @@ public class BoardController {
 	public String write_reply(@RequestParam("content_idx")int content_idx,
 							  @RequestParam("board_info_idx")int board_info_idx,
 							  BoardReplyBean boardReplyBean,
-			   				  Model model) {
+			   				  Model model)throws Exception {
 		model.addAttribute("board_info_idx", board_info_idx);
 		model.addAttribute("content_idx", content_idx);
 		
@@ -97,16 +97,14 @@ public class BoardController {
 	@PostMapping("/delete_reply")
 	public String delete_reply(@RequestParam("content_idx")int content_idx,
 							   @RequestParam("board_info_idx")int board_info_idx,
-							   Model model) {
-		
-		
+							   Model model)throws Exception {
 		
 		return"board/delete_reply_success";
 	}
 	
 	@GetMapping("/write")
 	public String write(@ModelAttribute("writeContentBean") ContentBean writeContentBean,
-						@RequestParam("board_info_idx") int board_info_idx) {
+						@RequestParam("board_info_idx") int board_info_idx)throws Exception {
 		
 		writeContentBean.setContent_board_idx(board_info_idx);
 		

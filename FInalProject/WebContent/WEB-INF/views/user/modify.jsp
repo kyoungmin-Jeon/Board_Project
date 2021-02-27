@@ -101,20 +101,20 @@ function execution_daum_address(){
 					<div class="form-group">
 							<form:label path="user_add1">주소</form:label> <br>
 							<div class="input-group">
-							<form:input path="user_add1"  class="user_add1" readonly="readonly"  style="width:400px; height:40px; border:1px solid gray; border-radius:10px;" /><br/><br>							
+							<form:input path="user_add1"  class="user_add1" style="width:400px; height:40px; border:1px solid gray; border-radius:10px;" /><br/><br>							
+							<form:errors path="user_add1" style="color:red"/>
 								<div class="input-group-append">
 									<button type="button" class= "btn btn-primary " input-group-append onclick="execution_daum_address()">주소찾기</button>
 								</div>
 							</div>
-							<form:errors path="user_add1" style="color:red"/>
 							
-							<form:input path="user_add2"  class="user_add2" readonly="readonly" style="width:490px; height:40px; border:1px solid gray; border-radius:10px;"/><br/><br>
+							<form:input path="user_add2"  class="user_add2" style="width:490px; height:40px; border:1px solid gray; border-radius:10px;"/><br/><br>
 							<form:errors path="user_add2" style="color:red"/>
 							<br>
 						
 							
 							<form:label path="user_add3" >상세 주소</form:label>
-							<form:input path="user_add3"  class="user_add3" readonly="readonly" style="width:490px; height:40px; border:1px solid gray; border-radius:10px;"/>
+							<form:input path="user_add3"  class="user_add3" style="width:490px; height:40px; border:1px solid gray; border-radius:10px;"/>
 							<form:errors path="user_add3" style="color:red"/>
 							
 						

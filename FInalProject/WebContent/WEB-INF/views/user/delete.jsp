@@ -34,6 +34,7 @@ $(document).ready(function(){
 			<div class="card shadow">
 				<div class="card-body">
 				<form:form action="${root }user/delete_pro" method='post' modelAttribute="deleteUserBean">
+					<form:hidden path="user_idx"/>
 					<div class="form-group">
 						<form:label path="user_name">이름</form:label>
 						<form:input path="user_name" class='form-control' readonly='true'/>

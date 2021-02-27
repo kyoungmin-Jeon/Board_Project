@@ -10,12 +10,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.board.beans.ContentBean;
 import com.board.beans.UserBean;
-import com.board.service.BoardService;
+import com.board.service.BoardServiceImpl;
 
 public class CheckWriterInterceptor implements HandlerInterceptor {
 	
 	@Autowired
-	private BoardService boardService;
+	private BoardServiceImpl boardService;
 	
 	@Resource(name="loginUserBean")
 	@Lazy

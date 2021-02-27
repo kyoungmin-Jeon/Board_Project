@@ -46,16 +46,16 @@
 	
 	<select id="getDeleteUserInfo" resultType="com.board.beans.UserBean" parameterType="java.lang.Integer">
 		<![CDATA[
-			select user_id, user_name, user_pw, user_num
+			select user_id, user_name, user_pw, user_num, user_idx
 				from user_table
 					where user_idx = #{user_idx}
 		]]>
 	</select>
 	
-	<delete id="deleteUserInfo" parameterType="java.lang.String">
+	<delete id="deleteUserInfo" parameterType="java.lang.Integer">
 		<![CDATA[
 			delete from user_table
-				where user_pw = #{user_pw}
+				 where user_idx = #{user_idx}
 		]]>
 	</delete>
 	

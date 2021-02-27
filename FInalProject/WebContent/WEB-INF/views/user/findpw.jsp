@@ -30,7 +30,7 @@ $(document).ready(function(){
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 					<div>
-						<span> <h3 align='center'>비밀번호 찾기 </h3>  </span>
+						<h3 align='center'>비밀번호 찾기</h3>
 					 </div>
 				<div class="card shadow">
 					<div class="card-body">

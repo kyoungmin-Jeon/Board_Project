@@ -19,7 +19,7 @@ public class UserValidator implements Validator {
 
 		String beanName = errors.getObjectName();
 
-		if (beanName.equals("joinUserBean") || beanName.equals("modifyUserBean") ||beanName.equals("deleteUserBean")) {
+		if (beanName.equals("joinUserBean") || beanName.equals("modifyUserBean") ||beanName.equals("deleteUserBean") ) {
 			if (userBean.getUser_pw().equals(userBean.getUser_pw2()) == false) {
 				errors.rejectValue("user_pw", "NotEquals");
 				errors.rejectValue("user_pw2", "NotEquals");

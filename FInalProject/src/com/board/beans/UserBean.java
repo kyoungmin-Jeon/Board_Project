@@ -1,6 +1,5 @@
 package com.board.beans;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -23,8 +22,14 @@ public class UserBean {
 	@Size(min=4, max=20)	
 	@Pattern(regexp ="[a-zA-Z0-9]*")
 	private String user_pw2;
+	
+	@Size(min=1)
 	private String user_add1;
+
+	@Size(min=1)
 	private String user_add2;
+	
+	@Size(min=1)
 	private String user_add3;
 	
 	private String user_num;
