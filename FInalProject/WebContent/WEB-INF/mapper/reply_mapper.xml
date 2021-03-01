@@ -14,16 +14,10 @@
 
 	<insert id="writeReply" parameterType="com.board.beans.BoardReplyBean">
 		<![CDATA[
-			insert into board_reply(content_idx, rno, content, writer)
-			values(#{content_idx}, board_reply_seq.nextval, #{content}, #{writer}) 
+			insert into board_reply(board_info_idx, content_idx, rno, content, writer)
+			values(#{board_info_idx}, #{content_idx}, board_reply_seq.nextval, #{content}, #{writer}) 
 			
 		]]>
 	</insert>
 	
-	<delete id='deleteReply' parameterType="java.lang.Integer">
-		<![CDATA[
-			delete from board_reply
-			where rno = ${rno}
-		]]>
-	</delete>
 </mapper>			            

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var='root' value='${pageContext.request.contextPath }/'/>  
 <!DOCTYPE html>
@@ -15,6 +16,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+<script >
+
+</script>
 <body>
 	
 	<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
@@ -48,58 +52,42 @@
 							<img src="${root }upload/${readContentBean.content_file}" width="50%"/>						
 						</div>
 					</c:if>
-					
+		
+						<div class="my-3 p-3 bg-white rounded shadow-sm" style="padding-top : 10px">
+							<form:form action='${root}board/write_reply' modelAttribute="boardReplyBean" method='post'>
+								<form:hidden path="board_info_idx"/>
+								<form:hidden path="content_idx"/>	
+								<form:hidden path="rno"/>
+								
+								<h6>댓글 작성</h6><br>	
+								<div class='row'>
+									<div class='col-sm-5'>
+										<form:input path="writer" class='form-control' style='float:left;' placeholder='작성자'/> 
+									</div>
+									
+									
+									<div class='col-sm-10'>
+										<form:textarea path="content" class='form-control' rows='3'  placeholder='댓글을 입력해주세요'/>
+									</div>
+										<button type='submit' class='btn btn-sm btn-primary' id='ReplySave' >저장</button>
+								</div>							
+							</form:form>
+						</div>	
+						
 					<div class="form-group">
 						<label for="board_reply" class='label label-info'>댓글</label>
 						<c:forEach items="${replyList }" var="replyList">
-							<div class='jumbotron'>	
+							<div class='my-3 p-3 bg-white rounded shadow-sm' >	
 								<p>
-								<span class='glyphicon glyphicon-user'></span>
-									작성자 : ${replyList.writer } &nbsp;
+									 작성자 : ${replyList.writer } &nbsp;
 								   (<fmt:formatDate value="${replyList.regDate }" pattern="yyyy-MM-dd" />)
 								</p>
 								
-								<p class="bg-info">댓글 : ${replyList.content }</p>
+								<p>댓글 : ${replyList.content }  </p>
 							</div>
 						</c:forEach>
 					</div>
 					
-					<div class="replyForm">
-						<form role="form" method="post" class='form-horizontal' >
-							<input type="hidden" id="board_info_idx" name="board_info_idx" value="${board_info_idx }">
-							<input type="hidden" id="content_idx" name="content_idx" value="${content_idx }">
-							
-						<div class='form-group'>
-							<label for="writer" class='col-sm-3 control-label'>작성자</label>
-								<div class='col-sm-10'>	
-									 <input type="text" class='form-control' id="writer" name="writer">
-								</div>
-						</div>	
-						
-						<div class='form-group'>
-							<label for="content" class="col-sm-3 control-label">댓글내용 </label> 
-						<div class='col-sm-10'>
-							<textarea id="content" name="content" class='form-control'></textarea>							
-						</div>
-						</div>	
-
-							<div class='form-group'>	
-								<div class='col-sm-offset-2 col-sm-10'>					
-									<button type="button" class="repSubmit btn btn-success">작성</button>
-								</div>
-	
-									<script>
-										var formObj = $(".replyForm form[role='form']");
-										
-										$(".repSubmit").click(function(){
-												formObj.attr("action","${root}board/write_reply");
-												formObj.submit();
-										});
-								
-									</script>
-							</div>		
-						</form>
-						
 					</div>
 					
 					<div class="form-group">
@@ -114,7 +102,6 @@
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
-</div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp"/>
 

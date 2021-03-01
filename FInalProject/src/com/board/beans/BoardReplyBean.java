@@ -5,10 +5,18 @@ import java.util.Date;
 public class BoardReplyBean {
 
 	private int content_idx;
+	private int board_info_idx;
 	private int rno;
 	private String content;
 	private String writer;
 	private Date regDate;
+	
+	public int getBoard_info_idx() {
+		return board_info_idx;
+	}
+	public void setBoard_info_idx(int board_info_idx) {
+		this.board_info_idx = board_info_idx;
+	}
 	public int getContent_idx() {
 		return content_idx;
 	}

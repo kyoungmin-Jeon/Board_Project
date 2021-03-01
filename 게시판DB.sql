@@ -35,6 +35,7 @@ create table content_table(
 --댓글 테이블
 --게시글 번호, 댓글번호, 내용, 작성자, 날짜 
 create table board_reply(
+    board_info_idx number,
     content_idx number not null,
     rno number not null,
     content varchar2(1000) not null,
@@ -42,6 +43,8 @@ create table board_reply(
     regDate date default sysdate,
     primary key (content_idx,rno)
 );
+
+alter table board_reply add foreign key(board_info_idx) references board_info_table(board_info_idx);
 
 --댓글 시퀀스
 --댓글 작성시 rno가 1씩 증가한다.

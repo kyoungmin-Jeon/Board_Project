@@ -64,6 +64,7 @@ public class BoardController {
 	public String read(@RequestParam("board_info_idx") int board_info_idx,
 					   @RequestParam("content_idx") int content_idx,
 					   @RequestParam("page") int page,
+					   BoardReplyBean boardReplyBean,
 					   Model model) throws Exception {
 		
 		model.addAttribute("board_info_idx", board_info_idx);
@@ -94,13 +95,6 @@ public class BoardController {
 		return"board/write_reply_success";
 	}
 	
-	@PostMapping("/delete_reply")
-	public String delete_reply(@RequestParam("content_idx")int content_idx,
-							   @RequestParam("board_info_idx")int board_info_idx,
-							   Model model)throws Exception {
-		
-		return"board/delete_reply_success";
-	}
 	
 	@GetMapping("/write")
 	public String write(@ModelAttribute("writeContentBean") ContentBean writeContentBean,

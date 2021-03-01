@@ -13,6 +13,5 @@ public interface ReplyDao {
 	
 	public void writeReply(BoardReplyBean boardReplyBean)throws Exception;
 
-	public void deleteReply(int rno)throws Exception;
 
 }

@@ -22,7 +22,4 @@ public class ReplyServiceImpl implements ReplyService {
 		replyDao.writeReply(boardReplyBean);
 	}
 	
-	public void deleteReply(int rno) throws Exception {
-		replyDao.deleteReply(rno);
-	}
 }

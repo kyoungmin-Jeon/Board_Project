@@ -22,7 +22,5 @@ public class ReplyDaoImpl implements ReplyDao{
 		sqlSessionTemplate.insert("reply.writeReply",boardReplyBean);
 	}
 	
-	public void deleteReply(int rno)throws Exception {
-		sqlSessionTemplate.delete("reply.deleteReply",rno);
-	}
+
 }

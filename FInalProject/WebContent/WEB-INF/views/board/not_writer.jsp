@@ -4,6 +4,6 @@
 <c:set var='root' value='${pageContext.request.contextPath }/'/>
 
 <script>
-	alert("잘못된 접근입니다.")
+	alert("글 작성자가 아닙니다.")
 	location.href='${root}main'
 </script>
