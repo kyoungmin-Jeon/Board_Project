@@ -5,8 +5,8 @@
 #### IDE : Eclipse
 #### DBMS : Oracle
 #### DB처리 : JDBC
-#### FrameWork : Spring@MVC v.5.2.2RELEASE
 #### 미들웨어 : Tomcat v9.0
+#### FrameWork : Spring@MVC v.5.2.2RELEASE
 #### 사용 라이브러리 : JSTL, hiberbate validation, dbcp2, MyBatis
 
 ## 개요
