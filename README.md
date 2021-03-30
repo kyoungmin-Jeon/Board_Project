@@ -9,9 +9,6 @@
 #### FrameWork : Spring@MVC v.5.2.2RELEASE
 #### 사용 라이브러리 : JSTL, hiberbate validation, dbcp2, MyBatis
 
-## 개요
-#### 인프런 강좌 수강을 통해 제작한 게시판 프로젝트
-
 ## 기능
 #### 1. 회원가입 / 회원탈퇴
 #### 2. 로그인 / 로그아웃, 회원 정보찾기, 회원 정보수정
